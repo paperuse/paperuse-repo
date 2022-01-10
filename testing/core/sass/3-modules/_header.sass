@@ -1,0 +1,97 @@
+.header
+  padding: $header-padding
+  min-height: $header-min-height
+
+.logo
+  figure
+    width: 100%
+    max-width: $brand-max-width
+    @include screen(mobile)
+      max-width: $mobile-brand-max-width
+    img
+      @include imgFit()
+.header
+  .nav
+    float: right
+    margin: 0
+    li
+      float: left
+      padding: 11px 0
+      a
+        color: $nav-color
+        font-family: $nav-font
+        font-size: 14px
+        padding: 12px 24px !important
+        position: relative
+        &::after
+          content: ''
+          position: absolute
+          left: 0
+          bottom: -30px
+          width: 0
+          height: 3px
+          background: $primary-color
+          @include border-radius(5px)
+          @include transition(width, 0.1s)
+        &:hover
+          &::after
+            width: 100%
+      &.item-select
+        a
+          color: $primary-color
+          &::after
+            width: 100%
+    &.parent
+      &:hover
+        a
+          color: $nav-hover-color
+          &::after
+            width: 100%
+      .submenu a
+        color: $sub-menu-color
+        &:hover
+          color: $sub-menu-hover
+    &.item-select
+      color: $active-nav-bg
+      border-radius: 5px
+      padding: 11px 0
+      a
+        color: $active-nav-color
+        padding: 10px 24px
+        font-weight: 500
+    &:hover
+      border-radius: 5px
+    a:hover
+      color: $nav-hover-color
+
+    .submenu
+      a:hover
+        color: $white
+.submenu
+  a
+    &::after
+      display: none
+
+
+.mburger
+  transform: scale(0.8)
+
+.desktop-menu
+  @include screen(mobile)
+    display: none
+  @include screen(tablet)
+    display: none
+
+#page
+  display: none
+  @include screen(mobile)
+    display: block
+  @include screen(tablet)
+    display: block
+
+.xmpl
+  position: relative
+  @include screen(tablet)
+    float: right
+  @include screen(mobile)
+    top: 10px

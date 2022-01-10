@@ -1,0 +1,193 @@
+// MIXINS
+
+// box
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+// clear fix
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// line height
+@mixin lheight ($lh){
+  height: $lh;
+  line-height: $lh;
+}
+
+// opacity
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity = $opacity-ie); //IE8
+}
+
+// Box shadow
+@mixin box-shadow($left, $top, $radius, $color) {
+  box-shadow: $left $top $radius $color;
+  -webkit-box-shadow: $left $top $radius $color;
+  -moz-box-shadow: $left $top $radius $color;
+}
+
+
+// trtansition
+@mixin transition($property, $duration, $easing: linear) {
+  transition: $property $duration $easing;
+  -webkit-transition: $property $duration $easing;
+  -moz-transition: $property $duration $easing;
+}
+
+// Border-radius
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+@mixin border-radii($topleft, $topright, $bottomright, $bottomleft) {
+  border-top-left-radius: $topleft;
+  border-top-right-radius: $topright;
+  border-bottom-right-radius: $bottomright;
+  border-bottom-left-radius: $bottomleft;
+  -webkit-border-top-left-radius: $topleft;
+  -webkit-border-top-right-radius: $topright;
+  -webkit-border-bottom-right-radius: $bottomright;
+  -webkit-border-bottom-left-radius: $bottomleft;
+  -moz-border-radius-topleft: $topleft;
+  -moz-border-radius-topright: $topright;
+  -moz-border-radius-bottomright: $bottomright;
+  -moz-border-radius-bottomleft: $bottomleft;
+}
+
+// gradient
+
+@mixin gradientL($color1, $color2) {
+  background-color: $color1;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$color1}, endColorstr=#{$color2});
+  background-image: -moz-linear-gradient(center top, $color1, $color2);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2));
+}
+
+@mixin gradientO($start-color, $end-color, $orientation) {
+  background: $start-color;
+  @if $orientation == 'vertical' {
+    background: -webkit-linear-gradient(top, $start-color, $end-color);
+    background: linear-gradient(to bottom, $start-color, $end-color);
+  } @else if $orientation == 'horizontal' {
+    background: -webkit-linear-gradient(left, $start-color, $end-color);
+    background: linear-gradient(to right, $start-color, $end-color);
+  } @else {
+    background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+    background: radial-gradient(ellipse at center, $start-color, $end-color);
+  }
+}
+
+// Image Fit
+@mixin imgFit($obj-s:cover,$obj-p:top center){
+  min-height: 100%;
+  min-width: 100%;
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: $obj-s;
+  object-position: $obj-p;
+}
+
+// Flex
+@mixin flux($dis:flex,$j-c:space-between,$a-c:center,$a-i:center,$w-n: nowrap){
+  display: $dis;
+  justify-content: $j-c;
+  align-content: $a-c;
+  align-items: $a-i;
+  flex-wrap: $w-n;
+}
+
+// Overlay
+@mixin overlay-cont($conten-string: '',$bg-color: #000, $trans: 0.5){
+  content: $conten-string;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: $bg-color;
+  opacity:$trans;
+}
+
+// After Content
+@mixin after-ico($cnt: '\f142',$fami: 'Font Awesome 5 Free', $pos: absolute){
+  content: $cnt;
+  font-family: $fami;
+  position: $pos;
+}
+// img background
+@mixin img-bg($rep: no-repeat,$sz: cover, $bg-pos: top center, $att:scroll){
+  background-repeat: $rep;
+  background-size: $sz;
+  background-position: $bg-pos;
+  background-attachment: $att;
+
+}
+// Skew
+@mixin slanted-Edge($org: 100% 0, $skw: -45deg, $bg-clr: #000){
+  content: '';
+  position: absolute;
+  top: 0;
+  background: $bg-clr;
+  -webkit-transform-origin: $org;
+  -ms-transform-origin: $org;
+  transform-origin: $org;
+  -webkit-transform: skew($skw);
+  -ms-transform: skew($skw);
+  transform: skew($skw);
+}
+
+// Padding with box sizing
+@mixin padding($padd-stg){
+  padding: $padd-stg;
+  box-sizing: border-box;
+}
+
+
+// Responsive
+@mixin screen($size) {
+  $desktop: "(min-width: 1220px)";
+  $laptop: "(min-width: 1024px) and (max-width: 1220px)";
+  $tablet: "(min-width: 768px) and (max-width: 1023px)";
+  $mobile: "(max-width: 767px)";
+  @if $size == desktop {
+    @media only screen and #{$desktop} {
+      @content;
+    }
+  }
+  @else if $size == laptop {
+    @media only screen and #{$laptop} {
+      @content;
+    }
+  }
+  @else if $size == tablet {
+    @media only screen and #{$tablet} {
+      @content;
+    }
+  }
+  @else if $size == mobile {
+    @media only screen and #{$mobile} {
+      @content;
+    }
+  }
+  @else {
+    @media only screen and #{$size} {
+      @content;
+    }
+  }
+}

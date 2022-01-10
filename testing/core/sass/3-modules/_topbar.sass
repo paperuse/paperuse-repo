@@ -1,0 +1,46 @@
+#topbar-d1
+  &.topbar
+    background-color: $top-bar-bg
+    padding: $top-bar-padd
+    color: $top-bar-color
+    font-family: $nav-font
+    .contact-details
+      ul
+        @include flux($j-c: flex-start)
+        @include screen(mobile)
+          justify-content: center
+        li
+          margin-right: 10px
+          a
+            color: $white
+            font-size: 14px
+            @include screen(mobile)
+              font-size: 12px
+            i
+              font-size: 13px
+              margin-right: 5px
+    .action-buttons
+      text-align: right
+      ul
+        display: inline-block
+        vertical-align: middle
+        li
+          margin-left: 10px
+          float: left
+          a
+            color: $nav-color
+            font-size: 12px
+            text-transform: uppercase
+            font-weight: bold
+            background: $secondary-color
+            @include border-radius(50px)
+            padding: 5px 15px
+            -webkit-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3803921568627451)
+            -moz-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3803921568627451)
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3803921568627451)
+            i
+              margin-right: 5px
+              font-size: 13px
+          &:last-child
+            a
+              background: $accent-color
